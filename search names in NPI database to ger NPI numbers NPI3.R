@@ -18,7 +18,7 @@ trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 setwd("~/Dropbox/npi_search")
 
 # provide the full path or URL to the input file
-input_file_path = "https://www.dropbox.com/s/3myst0596aqn96e/Physicians_total_drop_na_29.csv?raw=1"
+input_file_path = "https://www.dropbox.com/s/3myst0596aqn96e/Physicians_total_drop_na_29.csv?raw="
 
 output <- "output.csv"
 
