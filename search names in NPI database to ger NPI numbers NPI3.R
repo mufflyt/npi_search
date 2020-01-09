@@ -3,27 +3,31 @@
 
 
 # use library so R can make an API call
-require(httr)
+require("httr")
+require("jsonlite")
+require("dplyr")
+library("magrittr") 
+library("memoise")
+library("tidyverse")
+
 
 #create function trim that removes white spaces before and after value. One of the standard procedures in data preparation
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 
 # optional. set working directory as Desktop where the output file will be saved. for Mac
-setwd("~/Desktop/")
+setwd("~/Dropbox/npi_search")
 
 # provide the full path or URL to the input file
-#input_file_path = "https://www.dropbox.com/s/bdxfcw0iq9etp77/Physicians_total_left_join_27.csv?raw=1"
 input_file_path = "https://www.dropbox.com/s/3myst0596aqn96e/Physicians_total_drop_na_29.csv?raw=1"
 
-# if you provide the full path to file, no need to set working directory above
 output <- "output.csv"
 
 # read the input CSV file into R's data frame object
 input = read.csv(input_file_path)
 
-# ONLY FOR QUICK TESTING. ONLY TAKES FIRST 100 ROWS FOR QUICK RESULT. 
+# ONLY FOR QUICK TESTING. ONLY TAKES FIRST 10,000 ROWS FOR QUICK RESULT. 
 # YOU CAN DELETE THIS LINE SO THE SCRIPT WILL CHECK ENTIRE INPUT
-input<- head(input, 100)
+input<- head(input, 10000)
 
 # Loop through each row (from 1 to the total number of rows) in the dataframe with users
 for(i in 1:nrow(input)){
