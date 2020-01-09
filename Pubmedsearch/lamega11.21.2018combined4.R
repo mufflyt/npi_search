@@ -18,7 +18,7 @@ devtools::install_github("HenrikBengtsson/future", force=TRUE)
 library(memoise)
 library(future)
 not_null <- negate(is_null)
-`%<>%` <- magrittr::`%<>%`
+`%<>%` <- magrittr::`%<>%`  #This is the assignment pipe.  https://magrittr.tidyverse.org/reference/compound.html.  It must be the first pipe-operator in a chain, but otherwise it works like %>%.
 
 ## setup -------------------------------------------------------------------
 # (GM) Set path to data and filenames as "constants" and use CAPS to denote.
@@ -65,8 +65,8 @@ goba <- readxl::read_xlsx(path(DATA_DIR, GOBA_FILE),
 
 gobaColumns <- names(goba)
 flog.info("Reading in the DOXIMITY file.")
-dox <- data.table::fread(DOX_FILE, nThread = 2, header = T)
-dox %<>% mutate_at(vars(ID, NPI), as.character)
+# dox <- data.table::fread(DOX_FILE, nThread = 2, header = T)
+# dox %<>% mutate_at(vars(ID, NPI), as.character)
 
 doctor_names <- humaniformat::parse_names(goba$GOBA_Full.Name)
 names(doctor_names)
